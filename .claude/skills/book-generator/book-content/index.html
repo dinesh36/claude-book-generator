@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Book Preview</title>
+    <style>
+      body {
+        margin: 0;
+        background: #e5e7eb;
+      }
+
+      /* Print-to-PDF pagination check (see the book-generator skill's
+         generate-pdf.md): printing this app directly should reproduce the
+         real book's page breaks, not the dev-tool chrome around it — hide
+         the toolbar and each page's screen-only "stacked sheet" styling
+         (shadow/margin), so what prints is just the pages' own content
+         flowing under their real @page A4 rules. */
+      @media print {
+        .preview-toolbar {
+          display: none !important;
+        }
+        .preview-page-list {
+          padding-top: 0 !important;
+        }
+        .preview-page-sheet {
+          box-shadow: none !important;
+          margin: 0 !important;
+        }
+        body {
+          background: #ffffff;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

@@ -1,0 +1,117 @@
+@font-face { font-family: 'Inter Tight'; font-weight: 500; src: url('./assets/fonts/InterTight-Medium.woff2') format('woff2'); }
+@font-face { font-family: 'Inter Tight'; font-weight: 600; src: url('./assets/fonts/InterTight-SemiBold.woff2') format('woff2'); }
+@font-face { font-family: 'Poppins'; font-weight: 300; src: url('./assets/fonts/Poppins-Light.woff2') format('woff2'); }
+@font-face { font-family: 'Poppins'; font-weight: 600; src: url('./assets/fonts/Poppins-SemiBold.woff2') format('woff2'); }
+
+/* Flat colours only: no gradients, shadows or blurs. Change the theme here. */
+:root {
+  --ink: #1f2937;
+  --heading: #111827;
+  --muted: #6b7280;
+  --border: #d1d5db;
+  --primary: #1d4ed8;
+  --primary-tint: #eff6ff;
+  --surface: #f9fafb;
+  --code-bg: #f3f4f6;
+}
+
+/* margin: 0 on purpose. Components set their own padding; the chapter print
+   job overrides the margin in App.jsx. */
+@page { size: A4; margin: 0; }
+
+* { box-sizing: border-box; }
+
+.content-container {
+  width: 210mm;
+  margin: 0 auto;
+  padding: 20mm 18mm;
+  background: #ffffff;
+  color: var(--ink);
+  font-family: 'Poppins', sans-serif;
+  font-weight: 300;
+  font-size: 10.5pt;
+  line-height: 1.65;
+}
+@media print { .content-container { padding-bottom: 0; } }
+
+.content-container h1,
+.content-container h2,
+.content-container h3 {
+  font-family: 'Inter Tight', sans-serif;
+  font-weight: 500;
+  color: var(--heading);
+  break-after: avoid-page;
+}
+.content-container p { margin: 0 0 0.8em; }
+.content-container strong { font-weight: 600; }
+
+/* Chapter title */
+.chapter-title-banner {
+  margin: 0 0 14mm;
+  padding: 8mm 8mm 7mm;
+  background: var(--primary-tint);
+  border-left: 4px solid var(--primary);
+  break-before: page;
+  break-inside: avoid;
+}
+.chapter-title { margin: 0; font-size: 26pt; line-height: 1.2; font-weight: 600; color: var(--primary); }
+.chapter-subtitle { margin: 3mm 0 0; font-size: 12pt; color: var(--muted); }
+
+/* Sections */
+.section { margin: 0 0 8mm; }
+.sub-section { margin: 0 0 5mm; }
+.section-heading { margin: 0 0 4mm; break-after: avoid; break-inside: avoid; }
+.section-heading-title { margin: 0; font-size: 17pt; line-height: 1.3; }
+.section-heading-level-3 .section-heading-title { font-size: 13pt; }
+.section-heading-rule { margin-top: 2mm; height: 1.5px; width: 100%; background: var(--border); }
+.section-heading-level-3 .section-heading-rule { display: none; }
+
+/* Code blocks */
+.code-block {
+  margin: 0 0 1em;
+  padding: 4mm 5mm;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  font-family: 'SF Mono', Menlo, Consolas, monospace;
+  font-size: 9pt;
+  line-height: 1.55;
+  white-space: pre-wrap;
+  break-inside: avoid;
+}
+
+/* Lists */
+.list { margin: 0 0 1em; padding-left: 1.3em; }
+.list-item { margin: 0 0 0.4em; }
+.list-item::marker { color: var(--primary); }
+
+/* Cards */
+.card { margin: 0 0 4mm; border: 1px solid var(--border); border-radius: 4px; background: var(--surface); break-inside: avoid; }
+.card-header { padding: 2.5mm 4mm; background: var(--primary-tint); border-bottom: 1px solid var(--border); }
+.card-header h3 { margin: 0; font-size: 11pt; color: var(--primary); }
+.card-body { padding: 3mm 4mm; font-size: 9.5pt; }
+.card-body > :last-child { margin-bottom: 0; }
+
+/* Alert */
+.alert { display: flex; gap: 3mm; margin: 0 0 1em; padding: 3.5mm 4.5mm; border-left: 4px solid var(--alert-color); background: var(--alert-bg); break-inside: avoid; }
+.alert-icon { flex: none; margin-top: 3px; color: var(--alert-color); }
+.alert-body > :last-child { margin-bottom: 0; }
+.alert-label { color: var(--alert-color); }
+.alert-note { --alert-color: #1d4ed8; --alert-bg: #eff6ff; }
+.alert-tip { --alert-color: #047857; --alert-bg: #ecfdf5; }
+.alert-important { --alert-color: #b91c1c; --alert-bg: #fef2f2; }
+.alert-stacked { flex-direction: column; }
+
+/* Links */
+.cross-ref { color: inherit; text-decoration: none; }
+
+/* Outline (table of contents) */
+.outline { width: 210mm; margin: 0 auto; padding: 22mm 18mm; background: #ffffff; color: var(--ink); font-family: 'Poppins', sans-serif; font-weight: 300; }
+.outline-header { margin-bottom: 10mm; padding-bottom: 4mm; border-bottom: 2px solid var(--primary); }
+.outline-book-title { font-size: 10pt; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.outline-header h1 { margin: 2mm 0 0; font-family: 'Inter Tight', sans-serif; font-size: 24pt; color: var(--primary); }
+.outline-chapter { margin-bottom: 5mm; break-inside: avoid; }
+.outline-chapter-row { display: flex; align-items: baseline; gap: 4mm; }
+.outline-chapter-number { font-family: 'Inter Tight', sans-serif; font-weight: 600; color: var(--primary); }
+.outline-chapter h3 { margin: 0; font-family: 'Inter Tight', sans-serif; font-weight: 500; font-size: 13pt; color: var(--heading); }
+.outline-chapter ul { margin: 1.5mm 0 0 11mm; padding: 0; list-style: none; font-size: 10pt; color: var(--muted); }
+.outline-chapter li { margin-bottom: 1mm; }
